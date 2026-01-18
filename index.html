@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Narongchai Suphon</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            /* Theme Colors: Dark & Pink */
+            --bg-body: #0d1117;          /* GitHub Dark Background */
+            --bg-card: rgba(22, 27, 34, 0.7); /* Glass effect base */
+            --text-main: #e6edf3;
+            --text-muted: #8b949e;
+            --accent-pink: #ff79c6;      /* Vibrant Pink */
+            --accent-pink-dim: rgba(255, 121, 198, 0.2);
+            --border-color: rgba(240, 246, 252, 0.1);
+            
+            /* Spacing & Sizes */
+            --border-radius: 16px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 121, 198, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 121, 198, 0.1) 0%, transparent 20%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- Layout --- */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap; /* Allow wrapping on mobile */
+        }
+
+        /* --- Sidebar (Left) --- */
+        .sidebar {
+            flex: 1 1 280px; /* Grow 1, Shrink 1, Basis 280px */
+            max-width: 100%;
+        }
+
+        .profile-card {
+            /* Glassmorphism */
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            text-align: center;
+            position: sticky;
+            top: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%; /* Circle */
+            object-fit: cover;
+            border: 4px solid var(--accent-pink);
+            margin-bottom: 16px;
+            box-shadow: 0 0 20px var(--accent-pink-dim);
+        }
+
+        .profile-name { font-size: 1.5rem; font-weight: 600; margin-bottom: 4px; }
+        .profile-title { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px; }
+        
+        .profile-bio {
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            padding: 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .contact-list i { color: var(--accent-pink); width: 20px; }
+        .btn-contact {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: var(--accent-pink-dim);
+            color: var(--accent-pink);
+            border: 1px solid var(--accent-pink);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .btn-contact:hover {
+            background: var(--accent-pink);
+            color: #fff;
+            box-shadow: 0 0 15px var(--accent-pink-dim);
+        }
+
+        /* --- Main Content (Right) --- */
+        .main-content {
+            flex: 3 1 600px; /* Flex-grow 3 makes it wider */
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Common Card Style */
+        .content-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        h2.section-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Section 1: Digital Resume (README style) */
+        .typing-container {
+            font-size: 1.1rem;
+            margin: 20px 0;
+            font-family: monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-pink);
+        }
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: var(--accent-pink);
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .tech-stack {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .tech-tag {
+            background: rgba(255,255,255,0.05);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Section 2: Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive Grid */
+            gap: 20px;
+        }
+
+        .project-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .project-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-pink);
+        }
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .folder-icon { color: var(--accent-pink); }
+        .project-title { font-weight: 600; font-size: 1.1rem; }
+        .project-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; height: 40px; overflow: hidden;}
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+        .lang-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .btn-view {
+            color: var(--text-main);
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+        .btn-view:hover { background: var(--accent-pink); border-color: var(--accent-pink); }
+
+        /* Section 3: Contribution Graph */
+        .contribution-wrapper {
+            overflow-x: auto; /* Scroll on mobile if needed */
+        }
+        .graph-container {
+            display: grid;
+            grid-template-columns: repeat(52, 1fr); /* 52 weeks */
+            grid-template-rows: repeat(7, 1fr);    /* 7 days */
+            gap: 3px;
+            width: max-content;
+        }
+        .graph-square {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            background-color: rgba(255,255,255,0.05); /* Default empty */
+            position: relative;
+        }
+        /* Custom Tooltip */
+        .graph-square:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            z-index: 10;
+            pointer-events: none;
+        }
+        /* Contribution Levels (Using Pink Theme to match, can be changed to Green) */
+        .level-1 { background-color: #3f192e; } 
+        .level-2 { background-color: #7a2653; }
+        .level-3 { background-color: #bd347d; }
+        .level-4 { background-color: #ff79c6; box-shadow: 0 0 5px var(--accent-pink); }
+
+        /* --- Responsive Tweaks --- */
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; max-width: none; }
+            .profile-card { position: static; }
+            .graph-square { width: 8px; height: 8px; } /* Smaller squares on mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile-card">
+                <img src="download.jpg" alt="Profile" class="profile-img">
+                
+                <h1 class="profile-name">นาย ณรงค์ชัย สุพร</h1>
+                <p class="profile-title">นักศึกษามหาวิทยาลัยราชภัฏอุดรธานี</p>
+                
+                <div class="profile-bio">
+                    "คืองี้ครับไม่มีอะไร"
+                </div>
+
+                <ul class="contact-list">
+                    <li><i class="fas fa-map-marker-alt"></i> Udon Thani, Thailand</li>
+                    <li><i class="fas fa-envelope"></i> worameth@example.com</li>
+                    <li><i class="fab fa-github"></i> github.com/worameth</li>
+                </ul>
+
+                <a href="#" class="btn-contact">Contact Me</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <section class="content-card">
+                <h2 class="section-title">👋 สวัสดี! ผมชื่อ ณรงค์ชัย</h2>
+                
+                <div class="typing-container">
+                    <span id="typing-text"></span><span class="cursor"></span>
+                </div>
+
+                <p style="color: var(--text-muted); margin-bottom: 10px;">Tech Stack & Interests:</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">💻 HTML/CSS</span>
+                    <span class="tech-tag">⚡ JavaScript</span>
+                    <span class="tech-tag">🎨 UI Design</span>
+                    <span class="tech-tag">🎮 Gaming</span>
+                    <span class="tech-tag">🍜 Noodle Lover</span>
+                </div>
+            </section>
+
+            <section class="content-card">
+                <h2 class="section-title"><i class="fas fa-code-branch" style="margin-right:8px; color:var(--accent-pink)"></i> Pinned Projects</h2>
+                
+                <div class="projects-grid">
+                    <div class="project-item">
+                        <div class="project-header">
+                            <i class="far fa-folder folder-icon"></i>
+                            <a href="#" class="btn-view">View Code</a>
+                        </div>
+                        <h3 class="project-title">My Portfolio</h3>
+                        <p class="project-desc">เว็บพอร์ตโฟลิโอส่วนตัวดีไซน์ Glassmorphism รองรับ Responsive</p>
+                        <div class="project-meta">
+                            <span><span class="lang-dot" style="background: #e34c26;"></span>HTML</span>
+                            <span>⭐ 12</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <i class="far fa-folder folder-icon"></i>
+                            <a href="#" class="btn-view">Live Demo</a>
+                        </div>
+                        <h3 class="project-title">Todo List App</h3>
+                        <p class="project-desc">แอพจัดการงานที่เขียนด้วย Vanilla JS และ LocalStorage</p>
+                        <div class="project-meta">
+                            <span><span class="lang-dot" style="background: #f1e05a;"></span>JavaScript</span>
+                            <span>⭐ 8</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-card">
+                <h2 class="section-title">Contribution Activity</h2>
+                <div class="contribution-wrapper">
+                    <div class="graph-container" id="contribution-graph">
+                        </div>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; display: flex; align-items: center; justify-content: flex-end; gap: 5px;">
+                    Less 
+                    <span style="width:10px; height:10px; background:rgba(255,255,255,0.05); border-radius:2px;"></span>
+                    <span style="width:10px; height:10px; background:#3f192e; border-radius:2px;"></span>
+                    <span style="width:10px; height:10px; background:#7a2653; border-radius:2px;"></span>
+                    <span style="width:10px; height:10px; background:#bd347d; border-radius:2px;"></span>
+                    <span style="width:10px; height:10px; background:#ff79c6; border-radius:2px;"></span>
+                    More
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // --- 1. Typing Effect Logic ---
+        const textToType = "อยากนอนให้มากว่านี้...";
+        const typingElement = document.getElementById('typing-text');
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < textToType.length) {
+                typingElement.innerHTML += textToType.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 100); // Speed of typing
+            }
+        }
+
+        // Start typing when page loads
+        window.onload = function() {
+            typeWriter();
+            generateGraph();
+        };
+
+        // --- 2. Contribution Graph Generator ---
+        function generateGraph() {
+            const graphContainer = document.getElementById('contribution-graph');
+            const totalSquares = 52 * 7; // 52 weeks * 7 days
+
+            for (let i = 0; i < totalSquares; i++) {
+                const square = document.createElement('div');
+                square.classList.add('graph-square');
+                
+                // Randomly assign activity levels to simulate a real graph
+                // 70% chance of being empty, 30% chance of having color
+                const rand = Math.random();
+                if (rand > 0.9) {
+                    square.classList.add('level-4');
+                    square.setAttribute('data-tooltip', '10+ contributions');
+                } else if (rand > 0.8) {
+                    square.classList.add('level-3');
+                    square.setAttribute('data-tooltip', '5-9 contributions');
+                } else if (rand > 0.7) {
+                    square.classList.add('level-2');
+                    square.setAttribute('data-tooltip', '3-4 contributions');
+                } else if (rand > 0.6) {
+                    square.classList.add('level-1');
+                    square.setAttribute('data-tooltip', '1-2 contributions');
+                } else {
+                    square.setAttribute('data-tooltip', 'No contributions');
+                }
+
+                graphContainer.appendChild(square);
+            }
+        }
+    </script>
+</body>
+</html>
