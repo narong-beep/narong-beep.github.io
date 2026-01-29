@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ณรงค์ชัย | Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: rgba(22, 27, 34, 0.8);
+            --neon-green: #39ff14;
+            --text-main: #e6edf3;
+            --text-dim: #8b949e;
+            --border-color: rgba(48, 54, 61, 0.7);
+            --glass-effect: blur(12px) saturate(180%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Kanit', sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(57, 255, 20, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(57, 255, 20, 0.05) 0%, transparent 20%);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: flex; gap: 30px; }
+
+        .sidebar { flex: 0 0 300px; display: flex; flex-direction: column; gap: 20px; }
+
+        .profile-card {
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-effect);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            position: sticky;
+            top: 40px;
+        }
+
+        .profile-img {
+            width: 100%; aspect-ratio: 1/1; border-radius: 50%;
+            object-fit: cover; border: 3px solid var(--neon-green);
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3); margin-bottom: 20px;
+        }
+
+        .name { font-size: 1.5rem; font-weight: 600; margin-bottom: 5px; }
+        .title { color: var(--neon-green); font-size: 1rem; margin-bottom: 15px; }
+        .bio { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 25px; }
+
+        .social-links { display: flex; justify-content: center; gap: 20px; }
+        .social-links a {
+            color: var(--text-dim); font-size: 1.4rem; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+        }
+        .social-links a:hover { color: var(--neon-green); transform: scale(1.3); }
+
+        .main-content { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+        .glass-panel {
+            background: var(--card-bg); backdrop-filter: var(--glass-effect);
+            border: 1px solid var(--border-color); border-radius: 20px; padding: 30px;
+        }
+
+        h2 { margin-bottom: 20px; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        h2 i { color: var(--neon-green); }
+
+        .typing-container { font-size: 1.1rem; color: var(--text-main); min-height: 1.6em; }
+        .cursor { border-left: 2px solid var(--neon-green); animation: blink 0.7s infinite; margin-left: 3px; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .tag {
+            background: rgba(57, 255, 20, 0.1); border: 1px solid var(--neon-green);
+            color: var(--neon-green); padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;
+        }
+
+        .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .project-card {
+            border: 1px solid var(--border-color); border-radius: 15px; padding: 20px;
+            transition: 0.3s; cursor: pointer; background: rgba(255,255,255,0.02);
+        }
+        .project-card:hover { border-color: var(--neon-green); transform: translateY(-5px); background: rgba(57, 255, 20, 0.03); }
+        .project-card h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--neon-green); }
+
+        .graph { display: grid; grid-template-columns: repeat(auto-fill, 12px); grid-template-rows: repeat(7, 12px); gap: 4px; }
+        .cell { width: 12px; height: 12px; border-radius: 2px; background: #161b22; transition: 0.2s; }
+        .cell:hover { transform: scale(1.5); z-index: 10; border: 1px solid #fff; }
+        .level-1 { background: #0e4429; } .level-2 { background: #006d32; }
+        .level-3 { background: #26a641; } .level-4 { background: #39d353; }
+
+        @media (max-width: 900px) {
+            .container { flex-direction: column; }
+            .sidebar { flex: 1; }
+            .profile-card { position: static; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile-card">
+                <img src="download.jpg" alt="Profile" class="profile-img">
+                <h1 class="name">ณรงค์ชัย สุพร</h1>
+                <p class="title">Full Stack Developer</p>
+                <p class="bio">"ผมเป็นคนเงียบๆ อาจจะดูไม่เป็นมิตรเท่าไหร่แต่พูดคุยได้ครับ   "</p>
+                
+                <div class="social-links">
+                    <a href="https://github.com/narong-beep" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:narongchaisp14@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.facebook.com/narongchai.suphon/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/_narongchai_sp" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="glass-panel">
+                <h2><i class="fas fa-terminal"></i> สวัสดี! ผม ณรงค์ชัย 👋</h2>
+                <div class="typing-container">
+                    <span id="typing-text"></span><span class="cursor"></span>
+                </div>
+                <div class="tech-stack">
+                    <span class="tag">🚀 Node.js</span>
+                    <span class="tag">⚛️ React</span>
+                    <span class="tag">🎨 CSS/SASS</span>
+                    <span class="tag">🗄️ SQL/NoSQL</span>
+                    <span class="tag">🐍 Python</span>
+                    <span class="tag">🐧 Ubuntu Linux</span>
+                </div>
+            </section>
+
+            <section class="glass-panel">
+                <h2><i class="fas fa-star"></i> Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>E-Commerce Platform</h3>
+                        <p>ระบบร้านค้าออนไลน์ครบวงจร รองรับการชำระเงินและระบบสต็อกสินค้า</p>
+                        <div class="tech-stack"><span class="tag">JavaScript</span></div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Linux Automation Tool</h3>
+                        <p>Script สำหรับจัดการ User และความปลอดภัยบน Ubuntu Server</p>
+                        <div class="tech-stack"><span class="tag">Bash</span><span class="tag">Python</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass-panel">
+                <h2><i class="fas fa-chart-line"></i> 432 Contributions in the last year</h2>
+                <div class="graph" id="contribution-graph"></div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const text = "ผมชอบเขียนโค้ดและเรียนรู้เทคโนโลยีใหม่ๆ เพื่อสร้างสรรค์สิ่งที่เป็นประโยชน์ และน่าสนใจให้กับผู้ใช้งานครับ!";
+        let index = 0;
+        function typeEffect() {
+            if (index < text.length) {
+                document.getElementById("typing-text").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeEffect, 100);
+            }
+        }
+
+        function generateGraph() {
+            const graph = document.getElementById('contribution-graph');
+            const totalCells = 150; 
+            for (let i = 0; i < totalCells; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                const rand = Math.random();
+                if (rand > 0.9) cell.classList.add('level-4');
+                else if (rand > 0.7) cell.classList.add('level-3');
+                else if (rand > 0.5) cell.classList.add('level-2');
+                else if (rand > 0.3) cell.classList.add('level-1');
+                graph.appendChild(cell);
+            }
+        }
+
+        window.onload = () => { typeEffect(); generateGraph(); };
+    </script>
+</body>
+</html>
